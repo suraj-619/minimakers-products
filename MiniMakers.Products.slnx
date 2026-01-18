@@ -1,0 +1,15 @@
+<Solution>
+  <Folder Name="/API/">
+    <Project Path="MiniMakers.Prodicts.API.Contracts/MiniMakers.Prodicts.API.Contracts.csproj" />
+    <Project Path="MiniMakers.Products.API/MiniMakers.Products.API.csproj" />
+  </Folder>
+  <Folder Name="/Application/">
+    <Project Path="MiniMakers.Products.Application/MiniMakers.Products.Application.csproj" />
+  </Folder>
+  <Folder Name="/Domain/">
+    <Project Path="MiniMakers.Products.Domain/MiniMakers.Products.Domain.csproj" />
+  </Folder>
+  <Folder Name="/Infrastructure/">
+    <Project Path="MiniMakers.Products.Infrastructure/MiniMakers.Products.Infrastructure.csproj" />
+  </Folder>
+</Solution>

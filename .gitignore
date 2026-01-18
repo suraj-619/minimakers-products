@@ -1,0 +1,26 @@
+# =========================
+# Visual Studio / .NET
+# =========================
+
+.vs/
+[Bb]in/
+[Oo]bj/
+
+# Build results
+[Dd]ebug/
+[Rr]elease/
+x64/
+x86/
+
+# Rider / VS Code
+.idea/
+.vscode/
+
+# User-specific
+*.user
+*.suo
+*.rsuser
+
+# OS
+.DS_Store
+Thumbs.db

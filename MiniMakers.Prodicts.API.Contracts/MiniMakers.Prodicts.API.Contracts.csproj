@@ -1,0 +1,15 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MiniMakers.Products.Application\MiniMakers.Products.Application.csproj" />
+    <ProjectReference Include="..\MiniMakers.Products.Domain\MiniMakers.Products.Domain.csproj" />
+    <ProjectReference Include="..\MiniMakers.Products.Infrastructure\MiniMakers.Products.Infrastructure.csproj" />
+  </ItemGroup>
+
+</Project>
