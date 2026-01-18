@@ -20,7 +20,8 @@ builder.Services.AddMediatR(cfg =>
 builder.Services.AddValidatorsFromAssemblyContaining<GetProductsQueryValidator>();
 
 builder.Services.AddDbContext<ProductsDbContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"), 
+    sqlOptions => sqlOptions.CommandTimeout(300)));
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
 
 var app = builder.Build();

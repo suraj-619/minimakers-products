@@ -1,6 +1,5 @@
 using FluentValidation;
 using MediatR;
-using MiniMakers.Products.Application.Products.Queries;
 
 namespace MiniMakers.Products.Application.Products.Behaviors;
 
@@ -19,20 +18,6 @@ public class ValidationBehavior<TRequest, TResponse> : IPipelineBehavior<TReques
         if (!_validators.Any())
         {
             return await next();
-        }
-
-        // Apply defaults for GetProductsQuery if not provided
-        if (request is GetProductsQuery query)
-        {
-            request = (TRequest)(object)new GetProductsQuery
-            {
-                Category = query.Category,
-                MinPrice = query.MinPrice,
-                MaxPrice = query.MaxPrice,
-                IsActive = query.IsActive,
-                PageNumber = query.PageNumber == 0 ? 1 : query.PageNumber,
-                PageSize = query.PageSize == 0 ? 10 : query.PageSize
-            };
         }
 
         var context = new ValidationContext<TRequest>(request);

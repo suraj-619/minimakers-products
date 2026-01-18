@@ -13,22 +13,29 @@ public class GetProductsQueryHandler : IRequestHandler<GetProductsQuery, PagedRe
     {
       _repository = repository;
     }
-     public async Task<PagedResult<Product>> Handle(GetProductsQuery query, CancellationToken cancellationToken)
+    public async Task<PagedResult<Product>> Handle(GetProductsQuery query, CancellationToken cancellationToken)
     {
+        // Apply defaults if not provided
+        var pageNumber = query.PageNumber == 0 ? 1 : query.PageNumber;
+        var pageSize = query.PageSize == 0 ? 25 : query.PageSize;
+
         var products = _repository.Query();
         var predicate = ProductFilterExpressionBuilder.Build(query);
         products = products.Where(predicate);
+        
+        // Execute count and get paginated data
         var totalRecords = products.Count();
-        products = products.OrderBy(x=>x.CreatedDate)
-                           .Skip((query.PageNumber - 1) * query.PageSize)
-                           .Take(query.PageSize);
-        var data = products.ToList();
+        var data = products.OrderBy(x => x.CreatedDate)
+                           .Skip((pageNumber - 1) * pageSize)
+                           .Take(pageSize)
+                           .ToList();
+        
         return new PagedResult<Product>
         {
-            PageNumber = query.PageNumber,
-            PageSize = query.PageSize,
+            PageNumber = pageNumber,
+            PageSize = pageSize,
             TotalRecords = totalRecords,
-            TotalPages = (int)Math.Ceiling(totalRecords / (double)query.PageSize),
+            TotalPages = (int)Math.Ceiling(totalRecords / (double)pageSize),
             Data = data
         };
     }

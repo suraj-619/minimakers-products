@@ -18,6 +18,12 @@ namespace MiniMakers.Products.Infrastructure.Persistence.Configurations
             builder.Property(p => p.Price).IsRequired().HasColumnType("decimal(18,2)");
             builder.Property(p => p.IsActive).IsRequired();
             builder.Property(p => p.CreatedDate).IsRequired();
+            
+            // Add indexes for commonly filtered columns to improve query performance
+            builder.HasIndex(p => p.Category);
+            builder.HasIndex(p => p.IsActive);
+            builder.HasIndex(p => p.Price);
+            builder.HasIndex(p => p.CreatedDate);
         }
     }
 }

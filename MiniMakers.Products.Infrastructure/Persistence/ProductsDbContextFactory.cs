@@ -11,7 +11,8 @@ public class ProductsDbContextFactory
         var optionsBuilder = new DbContextOptionsBuilder<ProductsDbContext>();
 
         optionsBuilder.UseSqlServer(
-            "Server=localhost\\SQLEXPRESS;Database=Products;Trusted_Connection=true;TrustServerCertificate=true");
+            "Server=localhost\\SQLEXPRESS;Database=Products;Trusted_Connection=true;TrustServerCertificate=true",
+            sqlOptions => sqlOptions.CommandTimeout(300));
 
         return new ProductsDbContext(optionsBuilder.Options);
     }
