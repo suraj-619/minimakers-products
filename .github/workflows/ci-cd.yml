@@ -19,7 +19,7 @@ jobs:
         dotnet-version: '10.x'
 
     - name: Restore
-      run: dotnet restore          # restores all projects via solution
+      run: dotnet restore MiniMakers.Products.slnx
 
     - name: Build
-      run: dotnet build --no-restore --configuration Release
+      run: dotnet build MiniMakers.Products.slnx --no-restore --configuration Release
