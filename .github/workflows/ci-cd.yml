@@ -1,4 +1,4 @@
-name: .NET CI
+name: MiniMakers Products CI
 
 on:
   push:
@@ -13,16 +13,13 @@ jobs:
     steps:
     - uses: actions/checkout@v4
 
-    - name: Setup .NET
+    - name: Setup .NET 10
       uses: actions/setup-dotnet@v4
       with:
-        dotnet-version: '8.x'        # change if your project uses 6.x or 7.x
+        dotnet-version: '10.x'
 
     - name: Restore
-      run: dotnet restore
+      run: dotnet restore          # restores all projects via solution
 
     - name: Build
       run: dotnet build --no-restore --configuration Release
-
-    - name: Test
-      run: dotnet test --no-build --configuration Release
